@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/head.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+      crossorigin="anonymous"
+    />
+    <title><%=locals.title%></title>
+  </head>
+  <body>
+    <header id="main_heading">
+      <i class="fas fa-clipboard-list"></i>
+      <span>TO DO List</span>
+    </header>
+    <div id="list_container">
+      <ul>
+        <% for(let i of task_list) { %>
+        <li id="list_item">
+          <div id="task">
+            <span><%= i.serial%></span>
+            <span><%= i.name %></span>
+          </div>
+          <div id="delete_icon">
+            <a href="/delete-activity/?id=<%= i._id%>">
+              <i class="fas fa-minus-circle"></i>
+            </a>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+
+    <form action="/create-activity" method="POST">
+      <div id="input_container">
+        <div class="form_input1">
+          <input type="number" name="serial" placeholder="S.No." required>
+        </div>
+        <div class="form_input2">
+          <input type="text" name="name" placeholder="Enter task" />
+        </div>
+
+        <div id="btn">
+          <button type="submit">Add</button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
